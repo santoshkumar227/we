@@ -99,7 +99,7 @@
             event.preventDefault();
             $(this).prev().prev().prop('disabled', false);
             $(this).prev().prev().focus();
-            $(this).hide();
+            // $(this).hide();
 
             var nextButton = $(this).next();
             var dataValue = nextButton.attr("data-value");
@@ -109,7 +109,7 @@
             newSubmitButton.attr("name", "submit");
             newSubmitButton.attr("data-value", dataValue);
             newSubmitButton.attr("value", "Submit");
-
+            newSubmitButton.hide();
             $(this).prev().append(newSubmitButton);
         });
         
@@ -144,11 +144,12 @@
             }, 2000);
         });
 
-        $("#messages").on('click', "[type='submit']", function() {
-            $(this).prev().prev().prev().attr('disabled', true);
-            $(this).prev().prev().prev().prev().attr('disabled', true);
-            $(this).hide();
-        });
+        // $("#messages").on('click', '.bi-pen', function(event) {
+        //     event.preventDefault();
+        //     $(this).prev().prev().prop('disabled', false);
+        //     $(this).prev().prev().focus();
+        //     $(this).hide();
+        // });
 
         $("#messages").on('click', '.bi-submit', function(event) {
             event.preventDefault();
