@@ -113,46 +113,42 @@
             $(this).prev().append(newSubmitButton);
         });
         
-        $("#messages").on('click keyup', '#add_hello', function(){
+        $("#messages").on('click keyup', '#add_hello', function()
+        {
             var all_hello = $(this).val();
             var dataValue = $(this).next().next().attr("data-value");
-            // console.log(all_hello);
-            // console.log(dataValue);
-            var urls = 'http://localhost:8000/api/updatedata';
-            var types = 'POST';
-            var datas = { id: dataValue, message: all_hello };
-            var datatypes = 'json';
+            setTimeout(function() {
+                var urls = 'http://localhost:8000/api/updatedata';
+                var types = 'POST';
+                var datas = { id: dataValue, message: all_hello };
+                var datatypes = 'json';
 
-            var successCallback = function(response) {
-                console.log('AJAX request was successful:', response);
-            };
+                var successCallback = function(response) {
+                    console.log('AJAX request was successful:', response);
+                };
 
-            var errorCallback = function(error) {
-                console.error('AJAX request encountered an error:', error);
-            };
-            
-            var ajaxParams = {
-                url: urls,
-                type: types,
-                dataType: datatypes,
-                data: datas,
-                success: successCallback,
-                error: errorCallback
-            };
-            console.log(ajaxParams);
-            ajax(ajaxParams);
-
-
+                var errorCallback = function(error) {
+                    console.error('AJAX request encountered an error:', error);
+                };
+                
+                var ajaxParams = {
+                    url: urls,
+                    type: types,
+                    dataType: datatypes,
+                    data: datas,
+                    success: successCallback,
+                    error: errorCallback
+                };
+                // console.log(ajaxParams);
+                ajax(ajaxParams);
+            }, 2000);
         });
-        // $("#messages").on('click keyup', '[type="submit"]', function(event) {
-        //     event.preventDefault();
-        //     var dataValue = $(this).attr("data-value");
-        //     console.log($(this).prev().val());
 
-        //     // var inputValue = $(this).prevAll('input[type="text"]').first().val(); // Get the value of the previous text input
-        //     // console.log(inputValue + " " + dataValue);
-
-        // });
+        $("#messages").on('click', "[type='submit']", function() {
+            $(this).prev().prev().prev().attr('disabled', true);
+            $(this).prev().prev().prev().prev().attr('disabled', true);
+            $(this).hide();
+        });
 
         $("#messages").on('click', '.bi-submit', function(event) {
             event.preventDefault();
@@ -160,7 +156,7 @@
         });
 
         var ajax = function(ajaxparams){
-            $.ajax({ ajaxparams });
+            $.ajax( ajaxparams );
         }
 
         function AjaxCall(url, method, data, successCallback, errorCallback) {
