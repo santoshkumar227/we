@@ -25,7 +25,7 @@ class AuthController extends Controller
                 User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
-                    'password' => bcrypt($data['password']),
+                    'password' => md5($data['password']),
                 ]);
                 return response()->json(array('status' => true, 'msg' => 'User Created Successfully'), 200);
             }
@@ -49,7 +49,7 @@ class AuthController extends Controller
             } else {
                 $data = $request->All();
                 $email = $data['email'];
-                $password = $data['password'];
+                $password = md5($data['password']);
                 $user = User::where('email', $email)->where('password', $password)->first(); //bcrypt
                 if($user->exists)
                 {
