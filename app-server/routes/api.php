@@ -34,3 +34,6 @@ Route::match(['get', 'post'], '/create', [AuthController::class, 'createnames'])
 Route::match(['get', 'post'], '/displaydata', [AuthController::class, 'fetchdata']);
 
 Route::post('/deletedata', [AuthController::class, 'deletemessages']);
+
+
+Route::post('/updatedata', [AuthController::class, 'updaterec']);

@@ -118,4 +118,15 @@ class AuthController extends Controller
             $hello->update();
         }
     }
+
+    public function updaterec(Request $request)
+    {
+        $updated = Hello::where('id', $request->input('id'))->update(['message' => $request->input('message')]);
+
+        if ($updated) {
+            return response()->json(['message' => 'Record updated successfully']);
+        } else {
+            return response()->json(['message' => 'Record not found or no changes made'], 404);
+        }
+    }
 }
